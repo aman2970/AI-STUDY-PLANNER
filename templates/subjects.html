@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Subjects - AI Study Planner</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>My Subjects</h1>
+
+    <div class="login-form">
+
+        <label>Subject Name:</label>
+        <input type="text" id="subject-name" placeholder="e.g. Data Structures">
+
+        <br><br>
+
+        <label>Difficulty:</label>
+        <select id="difficulty">
+            <option value="">Select difficulty</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+        </select>
+
+        <br><br>
+
+        <button type="button" id="add-subject">
+            Add Subject
+        </button>
+
+    </div>
+
+    <h2>Your Subjects</h2>
+
+    <div id="subject-list"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
