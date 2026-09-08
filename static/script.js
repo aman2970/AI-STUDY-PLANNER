@@ -86,37 +86,82 @@ if (addSubjectButton) {
       }
     }
 
-    // Create subject card
-    const subjectItem = document.createElement("div");
+    fetch("/api/subjects", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: subjectName,
+        difficulty: difficulty,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
 
-    subjectItem.className = "subject-card";
+        alert("Subject saved successfully!");
 
-    subjectItem.innerHTML = `
-            <div>
-                <h3>${subjectName}</h3>
-
-                <span class="difficulty-badge ${difficulty.toLowerCase()}">
-                    ${difficulty}
-                </span>
-            </div>
-
-            <button type="button" class="delete-subject">
-                Delete
-            </button>
-        `;
-
-    // Add card to page
-    subjectList.appendChild(subjectItem);
-
-    // Delete subject
-    const deleteButton = subjectItem.querySelector(".delete-subject");
-
-    deleteButton.addEventListener("click", function () {
-      subjectItem.remove();
-    });
-
-    // Clear form
-    subjectNameInput.value = "";
-    difficultyInput.value = "";
+        subjectNameInput.value = "";
+        difficultyInput.value = "";
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Something went wrong.");
+      });
   });
+}
+
+// ====================
+// LOAD SUBJECTS
+// ====================
+
+if (subjectList) {
+  fetch("/api/subjects")
+    .then((response) => response.json())
+    .then((subjects) => {
+      subjects.forEach((subject) => {
+        const subjectItem = document.createElement("div");
+
+        subjectItem.className = "subject-card";
+
+        subjectItem.innerHTML = `
+    <div>
+        <h3>${subject.name}</h3>
+
+        <span class="difficulty-badge ${subject.difficulty.toLowerCase()}">
+            ${subject.difficulty}
+        </span>
+    </div>
+
+    <button type="button" class="delete-subject">
+        Delete
+    </button>
+`;
+
+        subjectList.appendChild(subjectItem);
+
+        const deleteButton = subjectItem.querySelector(".delete-subject");
+
+        deleteButton.addEventListener("click", function () {
+          fetch(`/api/subjects/${subject.id}`, {
+            method: "DELETE",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data.message);
+
+              subjectItem.remove();
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+
+              alert("Something went wrong.");
+            });
+        });
+      });
+    })
+    .catch((error) => {
+      console.error("Error loading subjects:", error);
+    });
 }
