@@ -2,23 +2,46 @@
 <html>
 
 <head>
+
     <title>Dashboard - AI Study Planner</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
 </head>
 
 <body>
 
     <h1>Student Dashboard</h1>
 
-    <h2>Welcome to AI Study Planner</h2>
+    <p>Welcome to your AI Study Planner!</p>
 
-    <p>Plan your studies, track your progress, and prepare for your exams.</p>
+    <br>
 
-    <a href="/subjects" class="dashboard-button">
-    My Subjects
-</a>
-    <button class="Dashboard-button">My Schedule</button>
-    <button class="Dashboard-button">Progress</button>
+
+    <a
+        href="/subjects"
+        class="dashboard-button"
+    >
+        My Subjects
+    </a>
+
+
+    <button class="dashboard-button">
+        My Schedule
+    </button>
+
+
+    <button class="dashboard-button">
+        Progress
+    </button>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
 
 </body>
 

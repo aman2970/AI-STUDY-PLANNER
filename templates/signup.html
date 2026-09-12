@@ -2,34 +2,62 @@
 <html>
 
 <head>
+
     <title>Signup - AI Study Planner</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
 </head>
 
 <body>
 
-    <h1>Create Account</h1>
+    <h1>Sign Up</h1>
 
-    <form class="login-form">
+    <div class="login-form">
 
         <label>Name:</label>
-        <input type="text">
+
+        <input
+            type="text"
+            placeholder="Enter your name"
+        >
 
         <br><br>
+
 
         <label>Email:</label>
-        <input type="email">
+
+        <input
+            type="email"
+            placeholder="Enter your email"
+        >
 
         <br><br>
+
 
         <label>Password:</label>
-        <input type="password">
+
+        <input
+            type="password"
+            placeholder="Enter your password"
+        >
 
         <br><br>
 
-        <button type="submit">Sign Up</button>
 
-    </form>
+        <button type="button">
+            Sign Up
+        </button>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
 
 </body>
 

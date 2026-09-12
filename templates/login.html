@@ -2,29 +2,67 @@
 <html>
 
 <head>
+
     <title>Login - AI Study Planner</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
 </head>
 
 <body>
 
     <h1>Login</h1>
 
-    <form class="login-form">
+    <div class="login-form">
+
         <label>Email:</label>
-        <input type="email" id="email">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+        >
 
         <br><br>
+
 
         <label>Password:</label>
-        <input type="password" id="password">
-        <button type="button" id="toggle-password">Show Password</button>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+        >
 
         <br><br>
-    <button type="button" id="login-button">Login</button>
-    </form>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+        <button
+            type="button"
+            id="toggle-password"
+        >
+            Show Password
+        </button>
+
+        <br><br>
+
+
+        <button
+            type="button"
+            id="login-button"
+        >
+            Login
+        </button>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
 
 </body>
 
