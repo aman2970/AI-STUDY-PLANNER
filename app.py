@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, redirect
 from database import create_tables, get_db_connection
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -105,8 +105,10 @@ def dashboard():
 
 @app.route("/logout")
 def logout():
+
     session.clear()
-    return render_template("login.html")
+
+    return redirect("/login")
 
 @app.route("/api/subjects", methods=["POST"])
 def add_subject():
