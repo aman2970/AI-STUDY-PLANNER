@@ -1,219 +1,106 @@
-/* ====================
-   GENERAL PAGE
-   ==================== */
-
 body {
-
     font-family: Arial, sans-serif;
-
     background-color: #f4f6f8;
-
     margin: 0;
-
     padding: 40px;
-
 }
-
 
 h1 {
-
     color: #1f2937;
-
 }
-
 
 h2 {
-
     color: #1f2937;
-
 }
-
 
 p {
-
     color: #555;
-
 }
-
-
-/* ====================
-   FORM
-   ==================== */
 
 .login-form {
-
     background-color: white;
-
     padding: 30px;
-
     max-width: 400px;
-
     margin: 30px auto;
-
     border-radius: 10px;
-
 }
-
 
 .login-form input {
-
     width: 100%;
-
     padding: 10px;
-
     margin-top: 5px;
-
     box-sizing: border-box;
-
 }
-
 
 .login-form select {
-
     width: 100%;
-
     padding: 10px;
-
     margin-top: 5px;
-
     box-sizing: border-box;
-
 }
-
 
 .login-form button {
-
     padding: 10px 20px;
-
     cursor: pointer;
-
 }
-
-
-/* ====================
-   DASHBOARD BUTTON
-   ==================== */
 
 .dashboard-button {
-
     display: inline-block;
-
     padding: 12px 20px;
-
     margin: 5px;
-
     border: none;
-
     border-radius: 6px;
-
     cursor: pointer;
-
     text-decoration: none;
-
 }
-
-
-/* ====================
-   SUBJECT CARD
-   ==================== */
 
 .subject-card {
-
     background-color: white;
-
     padding: 20px;
-
     margin: 15px auto;
-
     max-width: 500px;
-
     border-radius: 10px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     box-sizing: border-box;
-
 }
-
 
 .subject-card h3 {
-
     margin: 0 0 5px 0;
-
 }
-
 
 .subject-card p {
-
     margin: 0;
-
     color: #666;
-
 }
-
-
-/* ====================
-   DELETE BUTTON
-   ==================== */
 
 .delete-subject {
-
     padding: 8px 12px;
-
     border: none;
-
     border-radius: 6px;
-
     cursor: pointer;
-
 }
-
-
-/* ====================
-   DIFFICULTY BADGES
-   ==================== */
 
 .difficulty-badge {
-
     display: inline-block;
-
     padding: 5px 10px;
-
     border-radius: 20px;
-
     font-size: 12px;
-
     font-weight: bold;
-
 }
-
 
 .difficulty-badge.easy {
-
     background-color: #d1fae5;
-
     color: #065f46;
-
 }
-
 
 .difficulty-badge.medium {
-
     background-color: #fef3c7;
-
     color: #92400e;
-
 }
 
-
 .difficulty-badge.hard {
-
     background-color: #fee2e2;
-
     color: #991b1b;
-
 }
