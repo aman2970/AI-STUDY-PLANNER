@@ -106,15 +106,105 @@ function createSubjectCard(subject) {
             </span>
         </div>
 
-        <button
-            type="button"
-            class="delete-subject"
-        >
-            Delete
-        </button>
+        <div>
+    <button type="button" class="edit-subject">
+        Edit
+    </button>
+
+    <button type="button" class="delete-subject">
+        Delete
+    </button>
+</div>
     `;
 
   subjectList.appendChild(subjectItem);
+
+  const editButton = subjectItem.querySelector(".edit-subject");
+
+  editButton.addEventListener("click", function () {
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.value = subject.name;
+
+    const difficultySelect = document.createElement("select");
+
+    difficultySelect.innerHTML = `
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    `;
+
+    difficultySelect.value = subject.difficulty;
+
+    const saveButton = document.createElement("button");
+    saveButton.type = "button";
+    saveButton.textContent = "Save";
+
+    const cancelButton = document.createElement("button");
+    cancelButton.type = "button";
+    cancelButton.textContent = "Cancel";
+
+    const editArea = document.createElement("div");
+
+    editArea.appendChild(nameInput);
+    editArea.appendChild(difficultySelect);
+    editArea.appendChild(saveButton);
+    editArea.appendChild(cancelButton);
+
+    subjectItem.innerHTML = "";
+    subjectItem.appendChild(editArea);
+
+    saveButton.addEventListener("click", function () {
+      const newName = nameInput.value.trim();
+      const newDifficulty = difficultySelect.value;
+
+      if (newName === "") {
+        alert("Subject name cannot be empty.");
+        return;
+      }
+
+      const existingSubjects = document.querySelectorAll(".subject-card h3");
+
+      for (const existingSubject of existingSubjects) {
+        if (
+          existingSubject.textContent.toLowerCase() === newName.toLowerCase()
+        ) {
+          alert("This subject already exists.");
+          return;
+        }
+      }
+
+      fetch(`/api/subjects/${subject.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: newName,
+          difficulty: newDifficulty,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+
+          subject.name = newName;
+          subject.difficulty = newDifficulty;
+
+          createSubjectCard(subject);
+          subjectItem.remove();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Something went wrong.");
+        });
+    });
+
+    cancelButton.addEventListener("click", function () {
+      createSubjectCard(subject);
+      subjectItem.remove();
+    });
+  });
 
   const deleteButton = subjectItem.querySelector(".delete-subject");
 

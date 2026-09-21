@@ -208,6 +208,46 @@ def delete_subject(subject_id):
         "message": "Subject deleted successfully!"
     })
 
+@app.route("/api/subjects/<int:subject_id>", methods=["PUT"])
+def update_subject(subject_id):
+    if "user_id" not in session:
+        return jsonify({
+            "message": "Please login first."
+        }), 401
+
+    data = request.get_json()
+
+    name = data["name"]
+    difficulty = data["difficulty"]
+
+    user_id = session["user_id"]
+
+    connection = get_db_connection()
+
+    cursor = connection.execute(
+        """
+        UPDATE subjects
+        SET name = ?, difficulty = ?
+        WHERE id = ? AND user_id = ?
+        """,
+        (name, difficulty, subject_id, user_id)
+    )
+
+    connection.commit()
+
+    if cursor.rowcount == 0:
+        connection.close()
+
+        return jsonify({
+            "message": "Subject not found."
+        }), 404
+
+    connection.close()
+
+    return jsonify({
+        "message": "Subject updated successfully!"
+    })
+
 create_tables()
 
 if __name__ == "__main__":
